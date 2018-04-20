@@ -1,14 +1,17 @@
 from flask import Flask, request,render_template,make_response
 from flask_simplelogin import SimpleLogin, login_required
+from flask_cors import CORS
+
 import json
 dict={}
+
 
 app = Flask(__name__, static_url_path='/static',  static_folder='static')
 app.config['SECRET_KEY'] = 'something-secret'
 app.config['SIMPLELOGIN_USERNAME'] = 'chuck'
 app.config['SIMPLELOGIN_PASSWORD'] = 'norris'
 SimpleLogin(app)
-
+CORS(app)
 @app.route('/', methods=['GET'], defaults={'path': ''})
 def main_p(path):
     page = render_template('index.html')
