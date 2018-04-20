@@ -1,6 +1,7 @@
 from flask import Flask, request,render_template,make_response
 from flask_simplelogin import SimpleLogin, login_required
-
+import json
+dict={}
 
 app = Flask(__name__, static_url_path='/static',  static_folder='static')
 app.config['SECRET_KEY'] = 'something-secret'
@@ -14,12 +15,30 @@ def main_p(path):
     res = make_response(page, 200)
     return res
 
+#небезапасно!
+@app.route('/formdata')
+def formData():
+    intentName = request.args.get('intentName')
+    url = request.args.get('url')
+    if(intentName!='') and (url != ''):
+        dict[intentName] = url
+        return "Your data have saved!"
+    else:
+        return "Your data is incorrect!"
+    
+   
+
+@app.route('/getdata')
+def getData():
+    return json.dumps(dict, ensure_ascii=False)
 
 
-@app.route('/admin1')
+@app.route('/admin')
 @login_required   # < --- simple decorator
 def foo():
-    return 'secret'
+    page = render_template('index_adm.html')
+    res = make_response(page, 200)
+    return res
 
 
 
