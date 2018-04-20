@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from 'material-ui';
+import { withStyles, Grid } from 'material-ui';
 
 import {
   P,
@@ -11,7 +11,8 @@ import {
   Warning,
   Danger,
   Small,
-  RegularCard
+  RegularCard,
+  ItemGrid
 } from 'components';
 
 const style = {
@@ -37,18 +38,28 @@ const style = {
 function ServicesPage({ ...props }) {
   return (
     <div>
-      <RegularCard
-        cardTitle={'Подключенные услуги'}
-        cardSubtitle={'Список всех подключенных услуг'}
-        headerColor={'green'}
-        content={<div />}
-      />
-      <RegularCard
-        cardTitle={'Неподключенные услуги'}
-        cardSubtitle={'Список всех неподключенных услуг'}
-        headerColor={'orange'}
-        content={<div />}
-      />
+      <Grid container>
+        <ItemGrid xs={12} sm={12} md={6}>
+          <RegularCard
+            cardTitle={'Подключенные услуги'}
+            cardSubtitle={'Список всех подключенных услуг'}
+            headerColor={'green'}
+            content={
+              <div>
+                <Grid container />
+              </div>
+            }
+          />
+        </ItemGrid>
+        <ItemGrid xs={12} sm={12} md={6}>
+          <RegularCard
+            cardTitle={'Неподключенные услуги'}
+            cardSubtitle={'Список всех неподключенных услуг'}
+            headerColor={'orange'}
+            content={<div />}
+          />
+        </ItemGrid>
+      </Grid>
     </div>
   );
 }
