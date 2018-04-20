@@ -9,12 +9,12 @@ function Footer({ ...props }) {
   return (
     <footer className={classes.footer}>
       <div className={classes.container}>
-        <p className={classes.right}>
+        <p className={classes.center}>
           <span>
             &copy; {new Date().getFullYear()}{' '}
             <a href="https://sas-2018.herokuapp.com" className={classes.a}>
               SAS
-            </a>, нам очень вадно ваше мнение
+            </a>, нам очень важно ваше мнение
           </span>
         </p>
       </div>

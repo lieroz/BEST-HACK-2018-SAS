@@ -12,8 +12,6 @@ import {
   ListItemText
 } from 'material-ui';
 
-import { HeaderLinks } from 'components';
-
 import sidebarStyle from 'assets/jss/material-dashboard-react/sidebarStyle.jsx';
 
 const Sidebar = ({ ...props }) => {
@@ -56,7 +54,7 @@ const Sidebar = ({ ...props }) => {
   );
   var brand = (
     <div className={classes.logo}>
-      <a href="https://sas-2018.herokuapp.com" className={classes.logoLink}>
+      <a href="#" className={classes.logoLink}>
         <div className={classes.logoImage}>
           <img src={logo} alt="logo" className={classes.img} />
         </div>
@@ -80,10 +78,7 @@ const Sidebar = ({ ...props }) => {
           }}
         >
           {brand}
-          <div className={classes.sidebarWrapper}>
-            <HeaderLinks />
-            {links}
-          </div>
+          <div className={classes.sidebarWrapper}>{links}</div>
           {image !== undefined ? (
             <div
               className={classes.background}

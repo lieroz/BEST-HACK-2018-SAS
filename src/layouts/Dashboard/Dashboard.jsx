@@ -11,9 +11,16 @@ import { Header, Footer, Sidebar } from 'components';
 import dashboardRoutes from 'routes/dashboard.jsx';
 
 import appStyle from 'assets/jss/material-dashboard-react/appStyle.jsx';
-
-import image from 'assets/img/sidebar-2.jpg';
+import image from 'assets/img/sidebar-test.jpg';
 import logo from 'assets/img/reactlogo.png';
+
+import {
+  FloatingMenu,
+  MainButton,
+  ChildButton
+} from 'react-floating-button-menu';
+
+import { Message } from '@material-ui/icons';
 
 const switchRoutes = (
   <Switch>
@@ -50,7 +57,7 @@ class App extends React.Component {
       <div className={classes.wrapper}>
         <Sidebar
           routes={dashboardRoutes}
-          logoText={'Sas Tim'}
+          logoText={'Флиткор'}
           logo={logo}
           image={image}
           handleDrawerToggle={this.handleDrawerToggle}
@@ -73,6 +80,40 @@ class App extends React.Component {
             <div className={classes.map}>{switchRoutes}</div>
           )}
           {this.getRoute() ? <Footer /> : null}
+        </div>
+        <div
+          style={{
+            position: 'absolute',
+            width: 50,
+            height: 50,
+            bottom: 25,
+            right: 25,
+            zIndex: 10
+          }}
+        >
+          <FloatingMenu slideSpeed={500} direction="left">
+            <MainButton
+              iconResting={Message}
+              iconActive={Message}
+              iconColor="white"
+              backgroundColor="black"
+              buttonSize="56"
+            />
+            {/* <ChildButton
+              iconButton={Person}
+              iconColor="black"
+              order={1}
+              backgroundColor="white"
+              buttonSize="56"
+            />
+            <ChildButton
+              iconButton={Person}
+              iconColor="black"
+              order={2}
+              backgroundColor="white"
+              buttonSize="56"
+            /> */}
+          </FloatingMenu>
         </div>
       </div>
     );
