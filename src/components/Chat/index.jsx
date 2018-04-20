@@ -35,11 +35,11 @@ export default class extends React.Component {
   sendMessage(){
     if(this.state.value === '')
       return;
-    this.ChatApi.sendMessage(this.state.value).then(response => {
-      console.log(response);
-      this.addMessage({user: 'Bot', text: response.result.fulfillment.speech});
-    });
     this.addMessage({user: 'Я', text: this.state.value});
+    cleverModule.sendMessage(this.state.value).then(fullfillment => {
+      console.log(response);
+      this.addMessage({user: 'Bot', text: fullfillment});
+    });
     this.setState({value: ''});
   }
 
