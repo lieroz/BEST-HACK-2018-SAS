@@ -7,6 +7,8 @@ import "assets/css/material-dashboard-react.css?v=1.2.0";
 
 import indexRoutes from "routes/index.jsx";
 
+import veryCleverModule from './veryCleverModule';
+
 const hist = createBrowserHistory();
 
 ReactDOM.render(
