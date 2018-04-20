@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Menu } from "@material-ui/icons";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Menu } from '@material-ui/icons';
 import {
   withStyles,
   AppBar,
@@ -8,12 +8,10 @@ import {
   IconButton,
   Hidden,
   Button
-} from "material-ui";
-import cx from "classnames";
+} from 'material-ui';
+import cx from 'classnames';
 
-import headerStyle from "assets/jss/material-dashboard-react/headerStyle.jsx";
-
-import HeaderLinks from "./HeaderLinks";
+import headerStyle from 'assets/jss/material-dashboard-react/headerStyle.jsx';
 
 function Header({ ...props }) {
   function makeBrand() {
@@ -28,7 +26,7 @@ function Header({ ...props }) {
   }
   const { classes, color } = props;
   const appBarClasses = cx({
-    [" " + classes[color]]: color
+    [' ' + classes[color]]: color
   });
   return (
     <AppBar className={classes.appBar + appBarClasses}>
@@ -39,9 +37,6 @@ function Header({ ...props }) {
             {makeBrand()}
           </Button>
         </div>
-        <Hidden smDown implementation="css">
-          <HeaderLinks />
-        </Hidden>
         <Hidden mdUp>
           <IconButton
             className={classes.appResponsive}
@@ -59,7 +54,7 @@ function Header({ ...props }) {
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"])
+  color: PropTypes.oneOf(['primary', 'info', 'success', 'warning', 'danger'])
 };
 
 export default withStyles(headerStyle)(Header);

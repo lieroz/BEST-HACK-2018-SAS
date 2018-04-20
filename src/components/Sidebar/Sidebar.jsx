@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
-import cx from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+import cx from 'classnames';
 import {
   withStyles,
   Drawer,
@@ -10,11 +10,11 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText
-} from "material-ui";
+} from 'material-ui';
 
-import { HeaderLinks } from "components";
+import { HeaderLinks } from 'components';
 
-import sidebarStyle from "assets/jss/material-dashboard-react/sidebarStyle.jsx";
+import sidebarStyle from 'assets/jss/material-dashboard-react/sidebarStyle.jsx';
 
 const Sidebar = ({ ...props }) => {
   // verifies if routeName is the one active (in browser input)
@@ -27,10 +27,10 @@ const Sidebar = ({ ...props }) => {
       {routes.map((prop, key) => {
         if (prop.redirect) return null;
         const listItemClasses = cx({
-          [" " + classes[color]]: activeRoute(prop.path)
+          [' ' + classes[color]]: activeRoute(prop.path)
         });
         const whiteFontClasses = cx({
-          [" " + classes.whiteFont]: activeRoute(prop.path)
+          [' ' + classes.whiteFont]: activeRoute(prop.path)
         });
         return (
           <NavLink
@@ -56,7 +56,7 @@ const Sidebar = ({ ...props }) => {
   );
   var brand = (
     <div className={classes.logo}>
-      <a href="https://www.creative-tim.com" className={classes.logoLink}>
+      <a href="https://sas-2018.herokuapp.com" className={classes.logoLink}>
         <div className={classes.logoImage}>
           <img src={logo} alt="logo" className={classes.img} />
         </div>
@@ -87,7 +87,7 @@ const Sidebar = ({ ...props }) => {
           {image !== undefined ? (
             <div
               className={classes.background}
-              style={{ backgroundImage: "url(" + image + ")" }}
+              style={{ backgroundImage: 'url(' + image + ')' }}
             />
           ) : null}
         </Drawer>
@@ -106,7 +106,7 @@ const Sidebar = ({ ...props }) => {
           {image !== undefined ? (
             <div
               className={classes.background}
-              style={{ backgroundImage: "url(" + image + ")" }}
+              style={{ backgroundImage: 'url(' + image + ')' }}
             />
           ) : null}
         </Drawer>

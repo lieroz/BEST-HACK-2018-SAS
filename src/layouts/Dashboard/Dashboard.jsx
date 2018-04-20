@@ -1,19 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Switch, Route, Redirect } from 'react-router-dom';
 // creates a beautiful scrollbar
-import PerfectScrollbar from "perfect-scrollbar";
-import "perfect-scrollbar/css/perfect-scrollbar.css";
-import { withStyles } from "material-ui";
+import PerfectScrollbar from 'perfect-scrollbar';
+import 'perfect-scrollbar/css/perfect-scrollbar.css';
+import { withStyles } from 'material-ui';
 
-import { Header, Footer, Sidebar } from "components";
+import { Header, Footer, Sidebar } from 'components';
 
-import dashboardRoutes from "routes/dashboard.jsx";
+import dashboardRoutes from 'routes/dashboard.jsx';
 
-import appStyle from "assets/jss/material-dashboard-react/appStyle.jsx";
+import appStyle from 'assets/jss/material-dashboard-react/appStyle.jsx';
 
-import image from "assets/img/sidebar-2.jpg";
-import logo from "assets/img/reactlogo.png";
+import image from 'assets/img/sidebar-2.jpg';
+import logo from 'assets/img/reactlogo.png';
 
 const switchRoutes = (
   <Switch>
@@ -33,10 +33,10 @@ class App extends React.Component {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
   getRoute() {
-    return this.props.location.pathname !== "/maps";
+    return this.props.location.pathname !== '/maps';
   }
   componentDidMount() {
-    if(navigator.platform.indexOf('Win') > -1){
+    if (navigator.platform.indexOf('Win') > -1) {
       // eslint-disable-next-line
       const ps = new PerfectScrollbar(this.refs.mainPanel);
     }
@@ -50,7 +50,7 @@ class App extends React.Component {
       <div className={classes.wrapper}>
         <Sidebar
           routes={dashboardRoutes}
-          logoText={"Creative Tim"}
+          logoText={'Sas Tim'}
           logo={logo}
           image={image}
           handleDrawerToggle={this.handleDrawerToggle}
