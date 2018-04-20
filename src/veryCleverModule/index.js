@@ -8,13 +8,8 @@ import {ApiAiClient} from 'api-ai-javascript';
 
 const token = '3f0492bce1d74f66a4e254f62e95b7df';
 
-let instance;
-
-export default class ChatAPI {
-  constructor(options) {
-    if (instance)
-      return;
-
+class ChatAPI {
+  constructor() {
     this._actions = {};
     this.client = new ApiAiClient({accessToken: token});
   }
@@ -22,7 +17,7 @@ export default class ChatAPI {
   sendMessage(message) {
     return this.client.textRequest(message).then(result => result.result).then(result => ({
         intentName: result.metadata.intentName,
-        parameters: result.parametest,
+        parameters: result.parameters,
       }).then(({intentName, parameters}) => {
         if (this._actions[intentName]) {
           for (let parameter of this._actions[intentName].parameters) {
@@ -30,7 +25,7 @@ export default class ChatAPI {
           }
           return this._actions[intentName].callback(parameters);
         }
-      })
+      }),
     );
   }
 
@@ -41,3 +36,5 @@ export default class ChatAPI {
     };
   }
 }
+
+export default new ChatAPI();
