@@ -13,10 +13,7 @@ import ServerApi from './ServerApi/ServerApi';
 const hist = createBrowserHistory();
 
 let serverApi = new ServerApi('http://localhost:8000');
-serverApi.getData().then(res => {
-  let api = new veryCleverModule();
-  Object.keys(res.data).forEach(intent => {});
-});
+serverApi.getData().then(res => {});
 
 ReactDOM.render(
   <Router history={hist}>

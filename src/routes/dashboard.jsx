@@ -1,6 +1,7 @@
 import ProfilePage from 'views/Profile/Profile.jsx';
 import FinancesPage from 'views/Finances/Finances.jsx';
 import ServicesPage from 'views/Services/Services.jsx';
+import BalancePage from 'views/Balance/Balance.jsx';
 
 import {
   Person,
@@ -16,6 +17,13 @@ const dashboardRoutes = [
     navbarName: 'Профиль',
     icon: Person,
     component: ProfilePage
+  },
+  {
+    path: '/balance',
+    sidebarName: 'Баланс',
+    navbarName: 'Баланс',
+    icon: AccountBalanceWallet,
+    component: BalancePage
   },
   {
     path: '/finances',

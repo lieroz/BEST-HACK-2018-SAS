@@ -16,6 +16,8 @@ import {
 } from '@material-ui/icons';
 import { withStyles, Grid } from 'material-ui';
 
+import Cards from 'react-credit-cards';
+
 import {
   StatsCard,
   ChartCard,
@@ -33,6 +35,128 @@ import {
 
 import dashboardStyle from 'assets/jss/material-dashboard-react/dashboardStyle';
 
+import Payment from 'payment';
+
+class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      number: '',
+      name: '',
+      expiry: '',
+      cvc: '',
+      focused: ''
+    };
+  }
+
+  componentDidMount() {
+    Payment.formatCardNumber(document.querySelector('[name="number"]'));
+    Payment.formatCardExpiry(document.querySelector('[name="expiry"]'));
+    Payment.formatCardCVC(document.querySelector('[name="cvc"]'));
+  }
+
+  handleInputFocus = ({ target }) => {
+    this.setState({
+      focused: target.name
+    });
+  };
+
+  handleInputChange = ({ target }) => {
+    if (target.name === 'number') {
+      this.setState({
+        [target.name]: target.value.replace(/ /g, '')
+      });
+    } else if (target.name === 'expiry') {
+      this.setState({
+        [target.name]: target.value.replace(/ |\//g, '')
+      });
+    } else {
+      this.setState({
+        [target.name]: target.value
+      });
+    }
+  };
+
+  handleCallback(type, isValid) {
+    console.log(type, isValid); //eslint-disable-line no-console
+  }
+
+  render() {
+    const { name, number, expiry, cvc, focused } = this.state;
+    return (
+      <div className="rccs__demo">
+        <h1>React Credit Cards</h1>
+        <div className="rccs__demo__content">
+          <Cards
+            number={number}
+            name={name}
+            expiry={expiry}
+            cvc={cvc}
+            focused={focused}
+            callback={this.handleCallback}
+          />
+          <form>
+            <div>
+              <input
+                type="tel"
+                name="number"
+                placeholder="Card Number"
+                onKeyUp={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+              />
+              <div>E.g.: 49..., 51..., 36..., 37...</div>
+            </div>
+            <div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                onKeyUp={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+              />
+            </div>
+            <div>
+              <input
+                type="tel"
+                name="expiry"
+                placeholder="Valid Thru"
+                onKeyUp={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+              />
+              <input
+                type="tel"
+                name="cvc"
+                placeholder="CVC"
+                onKeyUp={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+              />
+            </div>
+          </form>
+        </div>
+        <div className="rccs__demo__footer">
+          <iframe
+            title="GitHub Stars"
+            src="https://ghbtns.com/github-btn.html?user=amarofashion&repo=react-credit-cards&type=star&count=true"
+            frameBorder="0"
+            scrolling="0"
+            width="110px"
+            height="20px"
+          />
+          <iframe
+            title="GitHub Followers"
+            src="https://ghbtns.com/github-btn.html?user=amarofashion&type=follow&count=true"
+            frameBorder="0"
+            scrolling="0"
+            width="150px"
+            height="20px"
+          />
+        </div>
+      </div>
+    );
+  }
+}
+
 class Finances extends React.Component {
   state = {
     value: 0
@@ -47,117 +171,7 @@ class Finances extends React.Component {
   render() {
     return (
       <div>
-        <Grid container>
-          <ItemGrid xs={12} sm={6} md={3}>
-            <StatsCard
-              icon={ContentCopy}
-              iconColor="orange"
-              title="Used Space"
-              description="49/50"
-              small="GB"
-              statIcon={Warning}
-              statIconColor="danger"
-              statLink={{ text: 'Get More Space...', href: '#pablo' }}
-            />
-          </ItemGrid>
-          <ItemGrid xs={12} sm={6} md={3}>
-            <StatsCard
-              icon={Store}
-              iconColor="green"
-              title="Revenue"
-              description="$34,245"
-              statIcon={DateRange}
-              statText="Last 24 Hours"
-            />
-          </ItemGrid>
-          <ItemGrid xs={12} sm={6} md={3}>
-            <StatsCard
-              icon={InfoOutline}
-              iconColor="red"
-              title="Fixed Issues"
-              description="75"
-              statIcon={LocalOffer}
-              statText="Tracked from Github"
-            />
-          </ItemGrid>
-          <ItemGrid xs={12} sm={6} md={3}>
-            <StatsCard
-              icon={Accessibility}
-              iconColor="blue"
-              title="Followers"
-              description="+245"
-              statIcon={Update}
-              statText="Just Updated"
-            />
-          </ItemGrid>
-        </Grid>
-        <Grid container>
-          <ItemGrid xs={12} sm={12} md={4}>
-            <ChartCard
-              chart={
-                <ChartistGraph
-                  className="ct-chart"
-                  data={dailySalesChart.data}
-                  type="Line"
-                  options={dailySalesChart.options}
-                  listener={dailySalesChart.animation}
-                />
-              }
-              chartColor="green"
-              title="Daily Sales"
-              text={
-                <span>
-                  <span className={this.props.classes.successText}>
-                    <ArrowUpward
-                      className={this.props.classes.upArrowCardCategory}
-                    />{' '}
-                    55%
-                  </span>{' '}
-                  increase in today sales.
-                </span>
-              }
-              statIcon={AccessTime}
-              statText="updated 4 minutes ago"
-            />
-          </ItemGrid>
-          <ItemGrid xs={12} sm={12} md={4}>
-            <ChartCard
-              chart={
-                <ChartistGraph
-                  className="ct-chart"
-                  data={emailsSubscriptionChart.data}
-                  type="Bar"
-                  options={emailsSubscriptionChart.options}
-                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                  listener={emailsSubscriptionChart.animation}
-                />
-              }
-              chartColor="orange"
-              title="Email Subscriptions"
-              text="Last Campaign Performance"
-              statIcon={AccessTime}
-              statText="campaign sent 2 days ago"
-            />
-          </ItemGrid>
-          <ItemGrid xs={12} sm={12} md={4}>
-            <ChartCard
-              chart={
-                <ChartistGraph
-                  className="ct-chart"
-                  data={completedTasksChart.data}
-                  type="Line"
-                  options={completedTasksChart.options}
-                  listener={completedTasksChart.animation}
-                />
-              }
-              chartColor="red"
-              title="Completed Tasks"
-              text="Last Campaign Performance"
-              statIcon={AccessTime}
-              statText="campaign sent 2 days ago"
-            />
-          </ItemGrid>
-        </Grid>
+        <Demo />
       </div>
     );
   }
