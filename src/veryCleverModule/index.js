@@ -19,7 +19,7 @@ class ChatAPI {
         intentName: result.metadata.intentName,
         parameters: result.parameters,
         speech: result.fulfillment.speech,
-      }).then(({intentName, parameters, speech}) => {
+      })).then(({intentName, parameters, speech}) => {
         if (this._actions[intentName]) {
           for (let parameter in parameters) {
             if (!parameters[parameter]) return speech;
@@ -27,8 +27,7 @@ class ChatAPI {
           this._actions[intentName].callback(parameters);
           return speech;
         }
-      }),
-    );
+      });
   }
 
   registerAction(name, callback) {

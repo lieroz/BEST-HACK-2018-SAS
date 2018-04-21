@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import PerfectScrollbar from 'perfect-scrollbar';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import { withStyles } from 'material-ui';
+import Chat from '../../components/Chat';
 
 import { Header, Footer, Sidebar } from 'components';
 
@@ -115,6 +116,7 @@ class App extends React.Component {
             /> */}
           </FloatingMenu>
         </div>
+        <Chat/>
       </div>
     );
   }
