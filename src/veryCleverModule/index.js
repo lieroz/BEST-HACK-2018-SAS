@@ -18,22 +18,21 @@ class ChatAPI {
     return this.client.textRequest(message).then(result => result.result).then(result => ({
         intentName: result.metadata.intentName,
         parameters: result.parameters,
-      }).then(({intentName, parameters}) => {
+        speech: result.fulfillment.speech,
+      }).then(({intentName, parameters, speech}) => {
         if (this._actions[intentName]) {
-          for (let parameter of this._actions[intentName].parameters) {
-            if (!parameters[parameter]) return;
+          for (let parameter in parameters) {
+            if (!parameters[parameter]) return speech;
           }
-          return this._actions[intentName].callback(parameters);
+          this._actions[intentName].callback(parameters);
+          return speech;
         }
       }),
     );
   }
 
-  registerAction(name, callback, parameters = []) {
-    this._actions[name] = {
-      callback,
-      parameters,
-    };
+  registerAction(name, callback) {
+    this._actions[name] = callback;
   }
 }
 
