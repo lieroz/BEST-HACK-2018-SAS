@@ -17,6 +17,8 @@ import {
 import { withStyles, Grid } from 'material-ui';
 
 import Cards from 'react-credit-cards';
+import 'react-credit-cards/es/styles-compiled.css';
+import 'assets/css/styles.scss';
 
 import {
   StatsCard,
@@ -41,19 +43,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      number: '',
-      name: '',
-      expiry: '',
-      cvc: '',
-      focused: ''
-    };
-  }
-
-  componentDidMount() {
-    Payment.formatCardNumber(document.querySelector('[name="number"]'));
-    Payment.formatCardExpiry(document.querySelector('[name="expiry"]'));
-    Payment.formatCardCVC(document.querySelector('[name="cvc"]'));
+    this.state = this.props.state;
   }
 
   handleInputFocus = ({ target }) => {
@@ -85,73 +75,15 @@ class Demo extends React.Component {
   render() {
     const { name, number, expiry, cvc, focused } = this.state;
     return (
-      <div className="rccs__demo">
-        <h1>React Credit Cards</h1>
-        <div className="rccs__demo__content">
-          <Cards
-            number={number}
-            name={name}
-            expiry={expiry}
-            cvc={cvc}
-            focused={focused}
-            callback={this.handleCallback}
-          />
-          <form>
-            <div>
-              <input
-                type="tel"
-                name="number"
-                placeholder="Card Number"
-                onKeyUp={this.handleInputChange}
-                onFocus={this.handleInputFocus}
-              />
-              <div>E.g.: 49..., 51..., 36..., 37...</div>
-            </div>
-            <div>
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                onKeyUp={this.handleInputChange}
-                onFocus={this.handleInputFocus}
-              />
-            </div>
-            <div>
-              <input
-                type="tel"
-                name="expiry"
-                placeholder="Valid Thru"
-                onKeyUp={this.handleInputChange}
-                onFocus={this.handleInputFocus}
-              />
-              <input
-                type="tel"
-                name="cvc"
-                placeholder="CVC"
-                onKeyUp={this.handleInputChange}
-                onFocus={this.handleInputFocus}
-              />
-            </div>
-          </form>
-        </div>
-        <div className="rccs__demo__footer">
-          <iframe
-            title="GitHub Stars"
-            src="https://ghbtns.com/github-btn.html?user=amarofashion&repo=react-credit-cards&type=star&count=true"
-            frameBorder="0"
-            scrolling="0"
-            width="110px"
-            height="20px"
-          />
-          <iframe
-            title="GitHub Followers"
-            src="https://ghbtns.com/github-btn.html?user=amarofashion&type=follow&count=true"
-            frameBorder="0"
-            scrolling="0"
-            width="150px"
-            height="20px"
-          />
-        </div>
+      <div>
+        <Cards
+          number={number}
+          name={name}
+          expiry={expiry}
+          cvc={cvc}
+          focused={focused}
+          callback={this.handleCallback}
+        />
       </div>
     );
   }
@@ -171,7 +103,41 @@ class Finances extends React.Component {
   render() {
     return (
       <div>
-        <Demo />
+        <Grid container>
+          <ItemGrid xs={12} sm={12} md={4}>
+            <Demo
+              state={{
+                number: '4237823284792344',
+                name: 'Johnny Bravo',
+                expiry: '05/21',
+                cvc: '123',
+                focused: 'true'
+              }}
+            />
+          </ItemGrid>
+          <ItemGrid xs={12} sm={12} md={4}>
+            <Demo
+              state={{
+                number: '5237834284792344',
+                name: 'Johnny Bravo',
+                expiry: '12/19',
+                cvc: '123',
+                focused: 'true'
+              }}
+            />
+          </ItemGrid>
+          <ItemGrid xs={12} sm={12} md={4}>
+            <Demo
+              state={{
+                number: '6237823284792344',
+                name: 'Johnny Bravo',
+                expiry: '08/18',
+                cvc: '123',
+                focused: 'true'
+              }}
+            />
+          </ItemGrid>
+        </Grid>
       </div>
     );
   }
