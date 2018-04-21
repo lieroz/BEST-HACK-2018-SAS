@@ -9,6 +9,7 @@ import indexRoutes from 'routes/index.jsx';
 
 import veryCleverModule from './veryCleverModule';
 import ServerApi from "./ServerApi/ServerApi";
+import Chat from './components/Chat';
 
 let serverApi = new ServerApi('http://95670df7.ngrok.io');
 serverApi.getData().then(res => {
@@ -34,12 +35,17 @@ serverApi.getData().then(res => {
 const hist = createBrowserHistory();
 
 ReactDOM.render(
+  <div>
   <Router history={hist}>
     <Switch>
       {indexRoutes.map((prop, key) => {
         return <Route path={prop.path} component={prop.component} key={key} />;
       })}
     </Switch>
-  </Router>,
+  </Router>
+    <div style={{position: 'absolute', right: 0, bottom: 0, height: '400px', width: '300px', background: 'white'}}>
+      <Chat/>
+    </div>
+  </div>,
   document.getElementById('root')
 );

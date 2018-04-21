@@ -15,7 +15,10 @@ class ChatAPI {
   }
 
   sendMessage(message) {
-    return this.client.textRequest(message).then(result => result.result).then(result => ({
+    return this.client.textRequest(message).then(result => {
+      console.log(result);
+      return result.result;
+    }).then(result => ({
         intentName: result.metadata.intentName,
         parameters: result.parameters,
         speech: result.fulfillment.speech,
@@ -25,8 +28,8 @@ class ChatAPI {
             if (!parameters[parameter]) return speech;
           }
           this._actions[intentName].callback(parameters);
-          return speech;
         }
+        return speech;
       });
   }
 

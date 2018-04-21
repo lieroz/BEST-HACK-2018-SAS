@@ -33,6 +33,7 @@ export default class extends React.Component {
       return;
     this.addMessage({user: 'Я', text: this.state.value});
     cleverModule.sendMessage(this.state.value).then(fullfillment => {
+      debugger;
       this.addMessage({user: 'Bot', text: fullfillment});
     });
     this.setState({value: ''});
