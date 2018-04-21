@@ -5,19 +5,16 @@
 
 'use strict';
 
+import './index.scss';
+
 import React from 'react';
 
-import 'index.scss';
 import {Button, Col, FormControl, Grid, Row} from 'react-bootstrap';
-import ChatAPI from '../ChatApi/ChatApi';
+import cleverModule from '../../veryCleverModule';
 
 import Scroll from 'react-scroll';
 let Element = Scroll.Element;
 let scroller = Scroll.scroller;
-
-import '../styles/chat.scss';
-
-import cleverModule from '../../veryCleverModule';
 
 export default class extends React.Component {
   constructor(){
@@ -37,7 +34,6 @@ export default class extends React.Component {
       return;
     this.addMessage({user: 'Я', text: this.state.value});
     cleverModule.sendMessage(this.state.value).then(fullfillment => {
-      console.log(response);
       this.addMessage({user: 'Bot', text: fullfillment});
     });
     this.setState({value: ''});
