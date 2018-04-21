@@ -27,7 +27,7 @@ class ChatAPI {
           for (let parameter in parameters) {
             if (!parameters[parameter]) return speech;
           }
-          this._actions[intentName].callback(parameters);
+          this._actions[intentName](parameters);
         }
         return speech;
       });
