@@ -4,7 +4,7 @@
 
 'use strict';
 
-import './index.scss';
+import './index.css';
 
 import React from 'react';
 
