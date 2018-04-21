@@ -24,7 +24,7 @@ def formData():
     url = request.args.get('url')
     if(intentName!='') and (url != ''):
         f = open( fname, 'a' )
-        f.write(intentName, " ", url )
+        f.write(intentName+ " "+url+" \n" )
         f.close()
         return "Your data have saved!"
     else:
@@ -34,7 +34,7 @@ def formData():
 
 @app.route('/getdata')
 def getData():
-    f = open( fname, 'a' )
+    f = open( fname, 'r' )
     line = f.readline()
     dict={}
     while line:
@@ -45,8 +45,9 @@ def getData():
 
 @app.route('/cleardata')
 def clearData():
-    open(fname, 'w').close()
-    return 0
+    f = open(fname, 'w')
+    f.close()
+    return "ok"
 
 
 @app.route('/admin')
