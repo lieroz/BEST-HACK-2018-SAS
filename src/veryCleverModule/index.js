@@ -24,9 +24,11 @@ class ChatAPI {
         speech: result.fulfillment.speech,
       })).then(({intentName, parameters, speech}) => {
         if (this._actions[intentName]) {
+          debugger;
           for (let parameter in parameters) {
             if (!parameters[parameter]) return speech;
           }
+          debugger;
           this._actions[intentName](parameters);
         }
         return speech;

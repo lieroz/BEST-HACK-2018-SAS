@@ -28,8 +28,9 @@ serverApi.getData().then(res => {
 
    Object.keys(res.data).forEach(key => {
        veryCleverModule.registerAction(key,(parameters) => {
+           debugger;
            let url = res.data[key];
-           if(!parameters){
+           if(parameters){
                let keys = Object.keys(parameters);
                if(keys.length !== 0){
                    url += '?';

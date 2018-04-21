@@ -64,7 +64,7 @@ function ServicesPage({ ...props }) {
               {services.map(function(d, idx) {
                 return (
                   <ItemGrid xs={12} sm={12} md={4} key={idx}>
-                    <Toggle defaultChecked={idx === window.urlParam('toggle')} onChange={false} />
+                    <Toggle defaultChecked={idx == window.urlParam('toggle')} />
                     <span style={{ padding: 10 }}>{d.name}</span>
                   </ItemGrid>
                 );
