@@ -50,6 +50,7 @@ class Balance extends React.Component {
             />
           </ItemGrid>
         </Grid>
+        Оплатить: <input type="text"/>
       </div>
     );
   }
