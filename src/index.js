@@ -11,6 +11,17 @@ import veryCleverModule from './veryCleverModule';
 import ServerApi from "./ServerApi/ServerApi";
 import Chat from './components/Chat';
 
+window.urlParam = function(name){
+  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  if (results==null){
+    return null;
+  }
+  else{
+    return decodeURI(results[1]) || 0;
+  }
+};
+
+
 let serverApi = new ServerApi('http://95670df7.ngrok.io');
 serverApi.getData().then(res => {
    console.log(res.data);
