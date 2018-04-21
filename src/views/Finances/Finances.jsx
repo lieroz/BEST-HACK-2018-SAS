@@ -32,7 +32,6 @@ import {
 } from 'variables/charts';
 
 import dashboardStyle from 'assets/jss/material-dashboard-react/dashboardStyle';
-
 class Finances extends React.Component {
   state = {
     value: 0
@@ -44,6 +43,8 @@ class Finances extends React.Component {
   handleChangeIndex = index => {
     this.setState({ value: index });
   };
+
+
   render() {
     return (
       <div>
